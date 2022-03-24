@@ -5,11 +5,11 @@ import React, { createContext, useCallback, useEffect, useMemo } from 'react';
 const ARContext = createContext({});
 const videoDomElemSelector = '#arjs-video';
 
-const AR = React.memo(({ tracking = true, children, sourceType, patternRatio, matrixCodeType, detectionMode, sourceWidth, sourceHeight, cameraParametersUrl, onCameraStreamReady, onCameraStreamError }) => {
+const AR = React.memo(({ tracking = true, children, sourceType, patternRatio, matrixCodeType, detectionMode, sourceWidth, sourceHeight, displayWidth, displayHeight, cameraParametersUrl, onCameraStreamReady, onCameraStreamError }) => {
   const { gl, camera } = useThree();
 
   const arContext = useMemo(() => {
-    const arToolkitSource = new ArToolkitSource({ sourceWidth, sourceHeight, sourceType });
+    const arToolkitSource = new ArToolkitSource({ sourceWidth, sourceHeight, sourceType, displayWidth, displayHeight });
     const arToolkitContext = new ArToolkitContext({
       cameraParametersUrl,
       detectionMode,
@@ -18,7 +18,7 @@ const AR = React.memo(({ tracking = true, children, sourceType, patternRatio, ma
     });
 
     return { arToolkitContext, arToolkitSource };
-  }, [patternRatio, matrixCodeType, cameraParametersUrl, detectionMode, sourceWidth, sourceHeight, sourceType]);
+  }, [patternRatio, matrixCodeType, cameraParametersUrl, detectionMode, sourceWidth, sourceHeight, sourceType, displayWidth, displayHeight]);
 
   const onResize = useCallback(() => {
     const { arToolkitContext, arToolkitSource } = arContext;
