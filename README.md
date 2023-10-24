@@ -20,7 +20,6 @@ import { ARCanvas, ARMarker } from "@artcom/react-three-arjs"
 ReactDOM.render(
   <ARCanvas
     camera={ { position: [0, 0, 0] } }
-    dpr={ window.devicePixelRatio }
     onCreated={ ({ gl }) => {
       gl.setSize(window.innerWidth, window.innerHeight)
     } }>
@@ -39,9 +38,10 @@ ReactDOM.render(
 )
 
 ```
+### Demo
+<img src="https://user-images.githubusercontent.com/4621891/166238675-ba41e5ad-bed9-4b47-9890-b5523377b513.png" width="200" />&emsp;<img src="https://user-images.githubusercontent.com/4621891/166239728-ea12ad2a-52b6-4e5a-a23c-d2dc48c48a7c.png" width="200" />
 
-[Demo](https://codesandbox.io/s/jolly-hodgkin-ssu33)
-
+* [CodeSandbox Demo](https://codesandbox.io/s/jolly-hodgkin-ssu33)
 
 ## API
 
@@ -59,12 +59,15 @@ ReactDOM.render(
   onCameraStreamReady                             // callback which will be invoked when camera stream starts
   onCameraStreamError                             // callback which will be invoked when camera stream fails, e.g.: permissions
   sourceType = "webcam"                           // set camera source type, see ar.js code ²
-/>
+  ...props                                        // props are passed to the r3f canvas ³
+/>                                                
 ```
 
 <sup>1</sup> https://ar-js-org.github.io/AR.js-Docs/marker-based/#threejs
 
 <sup>2</sup> https://github.com/AR-js-org/AR.js/blob/00fc2a92af1a756600eb53a57a84f101a2c0435f/three.js/src/threex/threex-artoolkitsource.js#L11-L26
+
+<sup>3</sup> https://docs.pmnd.rs/react-three-fiber/api/canvas
 
 ### ARMarker
 
@@ -74,15 +77,10 @@ ReactDOM.render(
   type                            // arToolkit marker type, "barcode" or "pattern"
   barcodeValue                    // if type="barcode", its algorithmic value
   patternUrl                      // if type="pattern", a link to its pattern file
-  params                          // object which accepts all marker settings ³, e.g. params = {{ smooth: true }}
+  params                          // object which accepts all marker settings ¹, e.g. params = {{ smooth: true }}
   onMarkerFound                   // callback which will be invoked when marker has been found
   onMarkerLost                    // callback which will be invoked when previously found marker has been lost
 />
 ```
 
-<sup>3</sup> https://ar-js-org.github.io/AR.js-Docs/marker-based/#api-reference-for-marker-based
-
-## ToDos
-- [ ] Add example video/gif
-- [ ] CI Build
-- [x] Use ar.js as module, depends on https://github.com/AR-js-org/AR.js/pull/116
+<sup>1</sup> https://ar-js-org.github.io/AR.js-Docs/marker-based/#api-reference-for-marker-based
