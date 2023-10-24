@@ -28,6 +28,10 @@ const ARCanvas = ({
   cameraParametersUrl = "data/camera_para.dat",
   matrixCodeType = "3x3",
   sourceType = "webcam",
+  sourceWidth = 640,
+  sourceHeight = 480,
+  displayWidth = 640,
+  displayHeight = 480,
   onCameraStreamReady,
   onCameraStreamError,
   ...props
@@ -43,6 +47,7 @@ const ARCanvas = ({
         matrixCodeType={matrixCodeType}
         detectionMode={detectionMode}
         sourceType={sourceType}
+        sourceWidth={sourceWidth} sourceHeight={sourceHeight} displayWidth={displayWidth} displayHeight={displayHeight}
         cameraParametersUrl={cameraParametersUrl}
         onCameraStreamReady={onCameraStreamReady}
         onCameraStreamError={onCameraStreamError}>

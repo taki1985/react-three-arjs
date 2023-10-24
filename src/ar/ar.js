@@ -10,6 +10,10 @@ const AR = React.memo(function AR({
   tracking = true,
   children,
   sourceType,
+  sourceWidth,
+  sourceHeight,
+  displayWidth,
+  displayHeight,
   patternRatio,
   matrixCodeType,
   detectionMode,
@@ -20,7 +24,7 @@ const AR = React.memo(function AR({
   const { gl, camera } = useThree()
 
   const arContext = useMemo(() => {
-    const arToolkitSource = new ArToolkitSource({ sourceType })
+    const arToolkitSource = new ArToolkitSource({ sourceType ,sourceWidth, sourceHeight, displayWidth, displayHeight, })
     const arToolkitContext = new ArToolkitContext({
       cameraParametersUrl,
       detectionMode,
@@ -29,7 +33,7 @@ const AR = React.memo(function AR({
     })
 
     return { arToolkitContext, arToolkitSource }
-  }, [patternRatio, matrixCodeType, cameraParametersUrl, detectionMode, sourceType])
+  }, [patternRatio, matrixCodeType, cameraParametersUrl, detectionMode, sourceType,sourceWidth, sourceHeight, displayWidth, displayHeight])
 
   const onResize = useCallback(() => {
     const { arToolkitContext, arToolkitSource } = arContext
